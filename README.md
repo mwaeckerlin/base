@@ -26,7 +26,7 @@ Shared Volumes
 
 If you need access to the same external volume path from two containers, add your user to the group specified in environment variable `SHARED_GROUP_NAME` and give access rights and ownership of the sared ressource to this group, e.g., if your user is in variable `USER`, add to `Dockerfile`:
 
-    RUN addgroup $SHARED_GROUP_NAME $USER
+    RUN addgroup $USER $SHARED_GROUP_NAME
     VOLUME /var/common
 
 And add to `start.sh`:
