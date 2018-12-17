@@ -1,19 +1,8 @@
-FROM alpine
+FROM mwaeckerlin/very-base
 MAINTAINER mwaeckerlin
-ARG wwwuser="nginx"
-ARG lang="en_US.UTF-8"
 
 # change in childern:
 ENV CONTAINERNAME     "base"
-
-ENV WWWUSER           "${wwwuser}"
-ENV LANG              "${lang}"
-ENV SHARED_GROUP_NAME "shared-access"
-ENV SHARED_GROUP_ID   "500"
-ENV PS1               '\[\033[36;1m\]\u\[\033[97m\]@\[\033[32m\]${CONTAINERNAME}[\[\033[36m\]\h\[\033[97m\]]:\[\033[37m\]\w\[\033[0m\]\$ '
-
-RUN addgroup -g $SHARED_GROUP_ID $SHARED_GROUP_NAME \
- && apk update --no-cache --purge && apk upgrade --no-cache --purge
 
 # derieved images must have a /start.sh command as entrypoint
 ONBUILD ADD start.sh /start.sh
